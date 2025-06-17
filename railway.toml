@@ -1,0 +1,18 @@
+# Railway Build Configuration
+[build]
+  builder = "NIXPACKS"
+
+[build.env]
+  PYTHON_VERSION = "3.11"
+
+[deploy]
+  startCommand = "gunicorn --bind 0.0.0.0:$PORT app:app --workers 2 --timeout 300"
+  healthcheckPath = "/api/health"
+  healthcheckTimeout = 30
+  restartPolicyType = "ON_FAILURE"
+
+[env]
+  PORT = "5000"
+  FLASK_ENV = "production"
+  SECRET_KEY = "max-mortgage-analyzer-railway-key"
+

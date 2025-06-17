@@ -1,0 +1,13 @@
+# Nixpacks configuration for Railway deployment
+[phases.setup]
+  nixPkgs = ["python311", "tesseract", "poppler_utils", "pkg-config", "poppler"]
+
+[phases.install]
+  cmds = ["pip install -r requirements.txt"]
+
+[phases.build]
+  cmds = ["echo 'Maximum OCR Mortgage Analyzer - Build Complete'"]
+
+[start]
+  cmd = "gunicorn --bind 0.0.0.0:$PORT app:app --workers 2 --timeout 300 --max-requests 1000"
+
